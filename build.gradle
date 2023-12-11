@@ -1,0 +1,67 @@
+plugins {
+  id "org.springframework.boot" version "2.2.6.RELEASE"
+  id "io.spring.dependency-management" version "1.0.6.RELEASE"
+  id 'java'
+  id 'idea'
+}
+ext {
+  set('springCloudVersion', "Hoxton.SR3")
+  logstashVersion = '5.2'
+}
+
+group 'ru.master.project'
+sourceCompatibility = 11
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+  testCompile {
+    exclude group: 'junit', module: 'junit'
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+  implementation "ch.qos.logback:logback-classic"
+  implementation "ch.qos.logback:logback-core"
+  implementation "ch.qos.logback:logback-access"
+  implementation "net.logstash.logback:logstash-logback-encoder:${logstashVersion}"
+  implementation "org.slf4j:slf4j-api"
+  implementation "com.fasterxml.jackson.core:jackson-databind"
+  implementation "com.fasterxml.jackson.core:jackson-core"
+  implementation "com.fasterxml.jackson.core:jackson-annotations"
+  implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+  annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+  //implementation 'org.liquibase:liquibase-core'
+  //runtimeOnly 'com.h2database:h2'
+  //compileOnly "mysql:mysql-connector-java"
+
+  compileOnly 'org.projectlombok:lombok:1.18.12'
+  testCompile 'org.projectlombok:lombok:1.18.12'
+  annotationProcessor 'org.projectlombok:lombok:1.18.12'
+  testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+  implementation "org.modelmapper:modelmapper:2.3.0"
+  implementation 'javax.xml.bind:jaxb-api:2.3.0'
+  implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
+  implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
+  implementation 'javax.activation:activation:1.1.1'
+  implementation 'com.google.guava:guava:23.0'
+  implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+  implementation 'com.nimbusds:nimbus-jose-jwt:6.3'
+}
+
+test {
+  useJUnitPlatform()
+}

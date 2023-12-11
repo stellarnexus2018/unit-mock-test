@@ -1,0 +1,7 @@
+service:
+  name: ${spring.application.name}
+  versions: ${spring.application.version}
+spring:
+  application:
+    name: liquibase-project
+    version: 1.0
